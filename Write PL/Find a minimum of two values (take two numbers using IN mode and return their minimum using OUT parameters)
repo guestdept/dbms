@@ -1,0 +1,24 @@
+CREATE OR REPLACE PROCEDURE FIND_MIN(
+    num1 IN NUMBER,
+    num2 IN NUMBER,
+    min_val OUT NUMBER
+)
+IS
+BEGIN
+    IF num1 < num2 THEN
+        min_val := num1;
+    ELSE
+        min_val := num2;
+    END IF;
+END;
+/
+
+DECLARE
+    a NUMBER := 25;
+    b NUMBER := 40;
+    result NUMBER;
+BEGIN
+    FIND_MIN(a, b, result);
+    DBMS_OUTPUT.PUT_LINE('Minimum value is: ' || result);
+END;
+/
