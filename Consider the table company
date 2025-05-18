@@ -1,0 +1,26 @@
+
+CREATE TABLE company (
+    title VARCHAR(50),
+    company VARCHAR(50),
+    type VARCHAR(50),
+    production_year INT,
+    system VARCHAR(20),
+    production_cost INT,
+    revenue INT,
+    rating INT
+);
+
+INSERT INTO company VALUES
+('Blasting Boxes', 'Simone Games', 'action adventure', 1998, 'PC', 100000, 200000, 7),
+('Run Run Run!', '13 Mad Bits', 'shooter', 2011, 'PS3', 3500000, 650000, 3),
+('Duck n’Go', '13 Mad Bits', 'shooter', 2012, 'Xbox', 3000000, 1500000, 5),
+('SQL Wars!', 'Vertabelo', 'wargames', 2017, 'Xbox', 5000000, 25000000, 10);
+
+SELECT MAX(production_cost) FROM company;
+Alter table company Rename column production_cost to p_cost
+Select production_year,avg(revenue) from company
+GROUP BY production_year;
+select production_year from company where title='Blasting Boxes'
+
+DELETE FROM company
+WHERE company = '13 Mad Bits' AND production_year = 2011;
