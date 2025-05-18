@@ -1,0 +1,14 @@
+CREATE OR REPLACE PROCEDURE MULTI_TABLE(n1 IN NUMBER, n2 IN NUMBER) IS
+  i NUMBER := 1;
+begin
+  WHILE i <= n2 LOOP
+    DBMS_OUTPUT.PUT_LINE(n1 || ' x ' || i || ' = ' || (n1 * i));
+    i := i + 1;
+  end loop;
+end;
+
+
+BEGIN
+  MULTI_TABLE(5, 10);  -- Example: Print table of 5 up to 10
+END;
+/
