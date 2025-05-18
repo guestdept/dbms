@@ -1,0 +1,19 @@
+CREATE OR REPLACE PROCEDURE MULTI_TABLE(
+    base_num IN NUMBER,
+    limit_num IN NUMBER
+)
+IS
+    i NUMBER := 1;
+BEGIN
+    WHILE i <= limit_num LOOP
+        DBMS_OUTPUT.PUT_LINE(base_num || ' x ' || i || ' = ' || (base_num * i));
+        i := i + 1;
+    END LOOP;
+END;
+/
+
+BEGIN
+    MULTI_TABLE(7, 5);
+END;
+/
+
