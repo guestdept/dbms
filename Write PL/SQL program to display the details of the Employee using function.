@@ -1,0 +1,42 @@
+CREATE TABLE EMPLOYEES (
+    EMP_ID      NUMBER PRIMARY KEY,
+    EMP_NAME    VARCHAR2(50),
+    EMP_SALARY  NUMBER(10, 2),
+    EMP_DEPT    VARCHAR2(30)
+);
+
+INSERT INTO EMPLOYEES VALUES (101, 'John Doe', 50000, 'HR');
+INSERT INTO EMPLOYEES VALUES (102, 'Jane Smith', 60000, 'IT');
+
+CREATE OR REPLACE FUNCTION GET_EMP_DETAILS(p_emp_id IN NUMBER)
+RETURN VARCHAR2
+IS
+    v_emp_name EMPLOYEES.EMP_NAME%TYPE;
+    v_emp_salary EMPLOYEES.EMP_SALARY%TYPE;
+    v_emp_dept EMPLOYEES.EMP_DEPT%TYPE;
+    v_result VARCHAR2(200);
+BEGIN
+    SELECT EMP_NAME, EMP_SALARY, EMP_DEPT
+    INTO v_emp_name, v_emp_salary, v_emp_dept
+    FROM EMPLOYEES
+    WHERE EMP_ID = p_emp_id;
+
+    v_result := 'Name: ' || v_emp_name || ', Salary: ' || v_emp_salary || ', Dept: ' || v_emp_dept;
+    RETURN v_result;
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 'No employee found with ID ' || p_emp_id;
+    WHEN OTHERS THEN
+        RETURN 'Error: ' || SQLERRM;
+END;
+/
+
+DECLARE
+    v_emp_info VARCHAR2(200);
+BEGIN
+    v_emp_info := GET_EMP_DETAILS(101); -- You can change the ID
+    DBMS_OUTPUT.PUT_LINE(v_emp_info);
+END;
+/
+
